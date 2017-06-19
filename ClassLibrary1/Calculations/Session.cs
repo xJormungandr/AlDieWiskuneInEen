@@ -95,10 +95,10 @@ namespace ClassLibrary1.Calculations
                         Beam temp = beamList[(beamList.Count() - 1)];
                         if (printIni)
                         {
-                            dataLine.Add(String.Format("%6.2f &", LL / 1000));
-                            dataLine.Add(String.Format("%7.3f &", temp.own_weight / (temp.width / 1000) / 1000));
-                            dataLine.Add(String.Format("%7.2f &", temp.w / (temp.width / 1000) / 1000));
-                            dataLine.Add(String.Format("%5.0f & ", t));
+                            dataLine.Add((LL / 1000).ToString("6.2f"));
+                            dataLine.Add(( temp.own_weight / (temp.width / 1000) / 1000).ToString("7.3f"));
+                            dataLine.Add(( temp.w / (temp.width / 1000) / 1000).ToString("7.2f"));
+                            dataLine.Add((t).ToString("5.0f"));
                             printIni = false;
                         }
 
@@ -115,7 +115,7 @@ namespace ClassLibrary1.Calculations
                     Console.WriteLine();
                     dataLine = new List<string>();
                 }
-                Console.Write("\\midrule");
+                Console.WriteLine("\\midrule");
             }
 
             Console.WriteLine();
