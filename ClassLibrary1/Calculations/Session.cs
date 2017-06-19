@@ -99,7 +99,7 @@ namespace ClassLibrary1.Calculations
                             dataLine.Add(String.Format("%7.3f &", temp.own_weight / (temp.width / 1000) / 1000));
                             dataLine.Add(String.Format("%7.2f &", temp.w / (temp.width / 1000) / 1000));
                             dataLine.Add(String.Format("%5.0f & ", t));
-                            //printIni = false;
+                            printIni = false;
                         }
 
                         dataLine.Add(temp.c.printRebarRequirement());
