@@ -57,7 +57,7 @@ namespace ClassLibrary1.Calculations
                     spanList.Add(s);
                 }
 
-                //doCalculations(profile,spanList,slabThickness);
+                doCalculations(profile,spanList,slabThickness);
             }
             
 
@@ -91,18 +91,18 @@ namespace ClassLibrary1.Calculations
                     Boolean printIni = true;
                     foreach (Double L in spanLengths)
                     {
-                        //beamList.add(new Beam(p, L, p.webWidth, t, LL, SharedData.super_dead));
-                        //Beam temp = beamList.get(beamList.size() - 1);
+                        beamList.Add(new Beam(p, L, p.webWidth, t, LL, SharedData.super_dead));
+                        Beam temp = beamList[(beamList.Count() - 1)];
                         if (printIni)
                         {
-                            //dataLine.add(String.Format("%6.2f &", LL / 1000));
-                            //dataLine.add(String.Format("%7.3f &", temp.own_weight / (temp.width / 1000) / 1000));
-                            //dataLine.add(String.Format("%7.2f &", temp.w / (temp.width / 1000) / 1000));
-                            //dataLine.add(String.Format("%5.0f & ", t));
+                            dataLine.Add(String.Format("%6.2f &", LL / 1000));
+                            dataLine.Add(String.Format("%7.3f &", temp.own_weight / (temp.width / 1000) / 1000));
+                            dataLine.Add(String.Format("%7.2f &", temp.w / (temp.width / 1000) / 1000));
+                            dataLine.Add(String.Format("%5.0f & ", t));
                             //printIni = false;
                         }
 
-                        //dataLine.add(temp.c.printRebarRequirement());
+                        //dataLine.Add(temp.c.printRebarRequirement());
                     }
 
                     //String temp = dataLine.get(dataLine.size() - 1);
