@@ -86,49 +86,49 @@ namespace ClassLibrary1.Calculations
 
             foreach (Double t in slabThickness)
             {
-                foreach (Double LL in  )
+                foreach (Double LL in  liveLoad)
                 {
                     Boolean printIni = true;
                     foreach (Double L in spanLengths)
                     {
-                        beamList.add(new Beam(p, L, p.webWidth, t, LL, SharedData.super_dead));
-                        Beam temp = beamList.get(beamList.size() - 1);
+                        //beamList.add(new Beam(p, L, p.webWidth, t, LL, SharedData.super_dead));
+                        //Beam temp = beamList.get(beamList.size() - 1);
                         if (printIni)
                         {
-                            dataLine.add(String.Format("%6.2f &", LL / 1000));
-                            dataLine.add(String.Format("%7.3f &", temp.own_weight / (temp.width / 1000) / 1000));
-                            dataLine.add(String.Format("%7.2f &", temp.w / (temp.width / 1000) / 1000));
-                            dataLine.add(String.Format("%5.0f & ", t));
-                            printIni = false;
+                            //dataLine.add(String.Format("%6.2f &", LL / 1000));
+                            //dataLine.add(String.Format("%7.3f &", temp.own_weight / (temp.width / 1000) / 1000));
+                            //dataLine.add(String.Format("%7.2f &", temp.w / (temp.width / 1000) / 1000));
+                            //dataLine.add(String.Format("%5.0f & ", t));
+                            //printIni = false;
                         }
 
-                        dataLine.add(temp.c.printRebarRequirement());
+                        //dataLine.add(temp.c.printRebarRequirement());
                     }
 
-                    String temp = dataLine.get(dataLine.size() - 1);
-                    String newtemp = temp.Replace("&", "\\\\");
-                    dataLine.set(dataLine.size() - 1, newtemp);
-                    dataLine.stream().forEachOrdered(line-> {
-                        System.out.print(line);
-                    });
-                    System.out.println("");
-                    dataLine.clear();
+                    //String temp = dataLine.get(dataLine.size() - 1);
+                    //String newtemp = temp.Replace("&", "\\\\");
+                    //dataLine.set(dataLine.size() - 1, newtemp);
+                    //dataLine.stream().forEachOrdered(line-> {
+                    //    System.out.print(line);
+                    //});
+                    //System.out.println("");
+                    //dataLine.clear();
                 }
-                System.out.println("\\midrule");
+                //System.out.println("\\midrule");
             }
 
-            System.out.println();
+            //System.out.println();
 
-            beamList.stream()
-                    .forEach((b)-> {
-                String path = "./Output/" + b.name + "_" + b.span + "m" + "_"
-                + String.Format("%.2f", b.liveLoad / (b.width / 1000) / 1000)
-                + "_" + String.Format("%.3f", b.w / (b.width / 1000) / 1000)
-                + ".txt";
-                String out = b.printFullRecord();
-                Util.writeToFile(out, path);
-            }
-                );
+            //beamList.stream()
+            //        .forEach((b)-> {
+            //    String path = "./Output/" + b.name + "_" + b.span + "m" + "_"
+            //    + String.Format("%.2f", b.liveLoad / (b.width / 1000) / 1000)
+            //    + "_" + String.Format("%.3f", b.w / (b.width / 1000) / 1000)
+            //    + ".txt";
+            //    String out = b.printFullRecord();
+            //    Util.writeToFile(out, path);
+            //}
+            //    );
         }
 
     }
