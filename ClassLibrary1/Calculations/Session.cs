@@ -102,11 +102,11 @@ namespace ClassLibrary1.Calculations
                             //printIni = false;
                         }
 
-                        //dataLine.Add(temp.c.printRebarRequirement());
+                        dataLine.Add(temp.c.printRebarRequirement());
                     }
 
-                    //String temp = dataLine.get(dataLine.size() - 1);
-                    //String newtemp = temp.Replace("&", "\\\\");
+                    String temp2 = dataLine[(dataLine.Count() - 1)];
+                    String newtemp = temp2.Replace("&", "\\\\");
                     //dataLine.set(dataLine.size() - 1, newtemp);
                     //dataLine.stream().forEachOrdered(line-> {
                     //    System.out.print(line);

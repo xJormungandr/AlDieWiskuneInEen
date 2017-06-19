@@ -9,7 +9,7 @@ using System.IO;
 
 namespace ClassLibrary1.Calculations
 {
-    class VoidconBeamCalculator
+    public class VoidconBeamCalculator
     {
         private ArrayList messages;
         Profile p;

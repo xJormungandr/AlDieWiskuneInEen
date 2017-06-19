@@ -35,7 +35,7 @@ namespace ClassLibrary1.Calculations
         public double fy; // The weighted yield stress
         public double A_rebar;
         public double neutralAxisDepth;
-        //VoidconBeamCalculator c;
+        public VoidconBeamCalculator c;
 
         public Profile profile;
 
@@ -65,7 +65,7 @@ namespace ClassLibrary1.Calculations
             Mu = (w * Math.Pow(span, 2) / 8) * 1000; //[N.mm]
             
 
-            //c = new VoidconBeamCalculator(this);
+            c = new VoidconBeamCalculator(this);
             
             
         }
