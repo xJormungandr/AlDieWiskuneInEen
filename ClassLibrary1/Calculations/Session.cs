@@ -67,16 +67,18 @@ namespace ClassLibrary1.Calculations
         public static void doCalculations(Profile p, List<Double> spanList, double[] slabThickness)
         {
 
-            Console.WriteLine("%33s", " & & & &");
+            Console.Write(" & & & & ");
+                     
+
             foreach (Double s in spanList)
             {
                 if (spanList.IndexOf(s) == spanList.Count() - 1)
                 {
-                    Console.WriteLine("%6.2f \\\\", s);
+                    Console.Write(s.ToString("6.2f") +"  ");
                 }
                 else
                 {
-                    Console.WriteLine("%6.2f &", s);
+                    Console.Write(s.ToString("6.2f"));
 
                 }
             };
