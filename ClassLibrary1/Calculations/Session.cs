@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.Calculations
 {
-    class Session
+    public class Session
     {
         public static List<Beam> beamList = new List<Beam>();
         public static List<double> spanList = new List<double>();
@@ -20,7 +20,7 @@ namespace ClassLibrary1.Calculations
         static double[] slabThickness;
         static double[] spanLengths;
         
-        public static void main(String [] args)
+        public static void DoLogic()
         {
 
             Profile vp50 = new Profile("VP50", 50, 115, 415, 625, 0.8, 292, 20.55, 6450);
