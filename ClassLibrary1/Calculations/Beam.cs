@@ -8,6 +8,7 @@ namespace ClassLibrary1.Calculations
 {
     public class Beam
     {
+        public int coord;
         public double width;
         public double b_web;
         public double fcu;
