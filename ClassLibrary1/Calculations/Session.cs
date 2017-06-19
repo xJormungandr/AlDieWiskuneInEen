@@ -107,30 +107,30 @@ namespace ClassLibrary1.Calculations
 
                     String temp2 = dataLine[(dataLine.Count() - 1)];
                     String newtemp = temp2.Replace("&", "\\\\");
-                    //dataLine.set(dataLine.size() - 1, newtemp);
-                    //dataLine.stream().forEachOrdered(line-> {
-                    //    System.out.print(line);
-                    //});
-                    //System.out.println("");
-                    //dataLine.clear();
+                    dataLine.Add(newtemp);
+                    foreach (var line in dataLine)
+                    {
+                        Console.Write(line);
+                    }
+                    Console.WriteLine();
+                    dataLine = new List<string>();
                 }
-                //System.out.println("\\midrule");
+                Console.Write("\\midrule");
             }
 
-            //System.out.println();
+            Console.WriteLine();
 
-            //beamList.stream()
-            //        .forEach((b)-> {
-            //    String path = "./Output/" + b.name + "_" + b.span + "m" + "_"
-            //    + String.Format("%.2f", b.liveLoad / (b.width / 1000) / 1000)
-            //    + "_" + String.Format("%.3f", b.w / (b.width / 1000) / 1000)
-            //    + ".txt";
-            //    String out = b.printFullRecord();
-            //    Util.writeToFile(out, path);
-            //}
-            //    );
+
+            foreach(var b in beamList)
+            {
+                String path = "./Output/" + b.name + "_" + b.span + "m" + "_"
+                + String.Format("%.2f", b.liveLoad / (b.width / 1000) / 1000)
+                + "_" + String.Format("%.3f", b.w / (b.width / 1000) / 1000)
+                + ".txt";
+                String out123 = b.printFullRecord();
+                //Util.writeToFile(out123, path);
+            }         
         }
-
     }
 }
 
