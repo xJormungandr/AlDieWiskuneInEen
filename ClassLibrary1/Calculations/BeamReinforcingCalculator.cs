@@ -89,7 +89,7 @@ namespace ClassLibrary1.Calculations
             }
 
             double allowed_span = (SharedData.l_over_d_limit * mod_factor) * (d / 1000);
-            Console.WriteLine("Difference  Applied and Resistance Moment = %.10f\n", Mu - Mr);
+            //Console.WriteLine("Difference  Applied and Resistance Moment =  " + (Mu - Mr).ToString("F2"));
             return allowed_span;
         }
     }

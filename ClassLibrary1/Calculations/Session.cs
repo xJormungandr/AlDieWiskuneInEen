@@ -19,7 +19,8 @@ namespace ClassLibrary1.Calculations
         static double[] liveLoad;
         static double[] slabThickness;
         static double[] spanLengths;
-        
+        public const char Space = ' ';
+
         public static void DoLogic()
         {
 
@@ -38,7 +39,7 @@ namespace ClassLibrary1.Calculations
                 if (profile.name == "VP50")
                 {
                     slabThickness = new double[] { 120, 135, 150, 160 };
-                    spanLengths = Util.increment(4.0, 0.50, 11);
+                    spanLengths = Util.increment(2.5, 0.25, 9);
                 }
                 else if (profile.name == "VP115")
                 {
@@ -68,18 +69,20 @@ namespace ClassLibrary1.Calculations
         {
 
             Console.Write(" & & & & ");
-                     
+            
+
 
             foreach (Double s in spanList)
             {
                 if (spanList.IndexOf(s) == spanList.Count() - 1)
                 {
-                    Console.Write(s.ToString("6.2f") +"  ");
+                    Console.Write(s.ToString("F2") + new string(Space, 1));
+                    
                 }
                 else
                 {
-                    Console.Write(s.ToString("6.2f"));
-
+                    Console.Write(s.ToString("F2") + new string(Space, 1));
+                    
                 }
             };
             Console.WriteLine("");
@@ -97,18 +100,22 @@ namespace ClassLibrary1.Calculations
                         Beam temp = beamList[(beamList.Count() - 1)];
                         if (printIni)
                         {
-                            dataLine.Add((LL / 1000).ToString("6.2f"));
-                            dataLine.Add(( temp.own_weight / (temp.width / 1000) / 1000).ToString("7.3f"));
-                            dataLine.Add(( temp.w / (temp.width / 1000) / 1000).ToString("7.2f"));
-                            dataLine.Add((t).ToString("5.0f"));
+                            dataLine.Add((LL / 1000).ToString("F2"));
+                            dataLine.Add(new string(Space,2));
+                            dataLine.Add(( temp.own_weight / (temp.width / 1000) / 1000).ToString("F3"));
+                            dataLine.Add(new string(Space, 2));
+                            dataLine.Add(( temp.w / (temp.width / 1000) / 1000).ToString("F2"));
+                            dataLine.Add(new string(Space, 2));
+                            dataLine.Add((t).ToString("F0"));
+                            dataLine.Add(new string(Space, 2));
                             printIni = false;
                         }
 
                         dataLine.Add(temp.c.printRebarRequirement());
                     }
 
-                    String temp2 = dataLine[(dataLine.Count() - 1)];
-                    String newtemp = temp2.Replace("&", "\\\\");
+                    String temp2 = dataLine[(dataLine.Count() - 1)];                    
+                    String newtemp = temp2.Replace("&", "\\\\"); //Geen Fokken Idee Wat Hierdie Doen Nie
                     dataLine.Add(newtemp);
                     foreach (var line in dataLine)
                     {
@@ -126,8 +133,8 @@ namespace ClassLibrary1.Calculations
             foreach(var b in beamList)
             {
                 String path = "./Output/" + b.name + "_" + b.span + "m" + "_"
-                + String.Format("%.2f", b.liveLoad / (b.width / 1000) / 1000)
-                + "_" + String.Format("%.3f", b.w / (b.width / 1000) / 1000)
+                + String.Format("F2", b.liveLoad / (b.width / 1000) / 1000)
+                + "_" + String.Format("F3", b.w / (b.width / 1000) / 1000)
                 + ".txt";
                 String out123 = b.printFullRecord();
                 //Util.writeToFile(out123, path);

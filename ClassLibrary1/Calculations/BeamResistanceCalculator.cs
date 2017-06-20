@@ -48,8 +48,8 @@ namespace ClassLibrary1.Calculations
             else
             {
                 Mr = double.NaN;
-                Console.WriteLine("As/bd balanced = %.2f\n", rho_b);
-                Console.WriteLine("As/bd required = %.2f\n", rho);
+                Console.WriteLine("As/bd balanced = ", rho_b.ToString("F2"));
+                Console.WriteLine("As/bd required = ", rho.ToString("F2"));
                 Console.WriteLine("The beam is over reinforced");
             }
             return Mr;
@@ -76,18 +76,18 @@ namespace ClassLibrary1.Calculations
             int n = 4;
             double dia = 12;
             double As = 500;
-            Console.WriteLine("As = %.2f [mm^2]\n: "+ As);
+            Console.WriteLine("As =  "+ As.ToString("F2") + " [mm^2]");
             double h = 600;
             double cover = 25;
             double d = 500;
-            Console.Write("d = " + d);
+            Console.WriteLine("d = " + d.ToString("F2") + " [mm]");
             double Mu = 100e6;
             BeamResistanceCalculator r = new BeamResistanceCalculator(30, 300);
             r.setEffectiveDepth(d);
             r.setRebarArea(As);
             r.getUltimateMoment();
-            Console.WriteLine("Resistance moment = %.2f [Nmm]\n: " + r.getUltimateMoment());
-            Console.WriteLine("Difference Between Applied and Resistance Moment: " + (Mu - r.getUltimateMoment()));
+            Console.WriteLine("Resistance moment =  " + (r.getUltimateMoment()).ToString("F2")+ " [Nmm]");
+            Console.WriteLine("Difference Between Applied and Resistance Moment: " + (Mu - r.getUltimateMoment()).ToString("F2") + " [Nmm]");
 
             BeamReinforcingCalculator rebarCalculator = new BeamReinforcingCalculator(Mu, 30, 300);
             double finalX = 0.0;
@@ -98,8 +98,8 @@ namespace ClassLibrary1.Calculations
             rebarCalculator.calculate(ref finalX,ref finalAs);
             rebarCalculator.getSpanLimit(As, 450);
 
-            Console.WriteLine("Depth of Neutral Axis = %.2f [mm]\n: "+ finalX);
-            Console.WriteLine("Rebar Required = %.2f [mm^2]\n :"+ finalAs);
+            Console.WriteLine(("Depth of Neutral Axis = " + finalX.ToString("F2")) + " [mm]");
+            Console.WriteLine("Rebar Required =  "+ finalAs.ToString("F2") + " [mm^2]");
 
 
 

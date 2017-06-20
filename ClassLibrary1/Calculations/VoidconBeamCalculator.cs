@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using ClassLibrary1.Calculations;
 
 
 namespace ClassLibrary1.Calculations
@@ -211,8 +212,20 @@ namespace ClassLibrary1.Calculations
             messages.Add(message);
         }
 
+        public String printMessages()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (String s in messages)
+            {
+                sb.Append(s);
+                sb.Append(new String(Session.Space, 1));
+                               
+            };
+            return sb.ToString();
 
-        
+        }
+
+
 
         public String printRebarRequirement()
         {
@@ -221,34 +234,36 @@ namespace ClassLibrary1.Calculations
             {
                 if (SharedData.texFormat)
                 {
-                    rebarRequirement = String.Format("%.0f & ", Math.Round(A_rebar / 10) * 10);
+                    rebarRequirement = (Math.Round(A_rebar / 10) * 10).ToString("F0") + new string(Session.Space, 1);
                 }
                 else
                 {
-                    rebarRequirement = String.Format("%6.0f &", Math.Round(A_rebar / 10) * 10);
+                    rebarRequirement = (Math.Round(A_rebar / 10) * 10).ToString("F0") + new string(Session.Space, 1);
                 }
             }
             else if (SLS_limited & !overReinforced & !ULS_limited & !noConvergence)
             {
                 if (SharedData.texFormat)
                 {
-                    String nr = String.Format("\\underline{%.0f}", Math.Round((A_rebar + extraRebar) / 10) * 10);
-                    rebarRequirement = String.Format("%s & ", nr);
+                    String nr = (Math.Round((A_rebar + extraRebar) / 10) * 10).ToString("F0");
+
+                    rebarRequirement = String.Format(" & ", nr) + new string(Session.Space, 1);
                 }
                 else
                 {
-                    rebarRequirement = String.Format("%+6.0f &", Math.Round((A_rebar + extraRebar) / 10) * 10);
+                    rebarRequirement = (Math.Round((A_rebar + extraRebar) / 10) * 10).ToString("F0")+new string(Session.Space,1);
                 }
             }
             else
             {
                 if (SharedData.texFormat)
                 {
-                    rebarRequirement = String.Format("%s &", "");
+                    rebarRequirement = String.Format(" & ", " ");
+
                 }
                 else
                 {
-                    rebarRequirement = String.Format("%6s &", "");
+                    rebarRequirement = String.Format(" & ", " ");
                 }
             }
             return rebarRequirement;
@@ -262,13 +277,13 @@ namespace ClassLibrary1.Calculations
                 overReinforced = true;
                 if (verbose & SLS_limited)
                 {
-                    addMessage(String.Format("%s", "\n"));
+                    addMessage(String.Format(" ", "\n"));
                     addMessage("The design has become ULS controlled while adding rebar to control long term deflections\n");
                     
                 }
                 else if (verbose)
                 {
-                    addMessage(String.Format("%s", "\n"));
+                    addMessage(String.Format(" ", "\n"));
                     addMessage("The design is ULS controlled.\n");
                 }
             }

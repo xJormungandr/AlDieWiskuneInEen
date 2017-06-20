@@ -57,11 +57,13 @@ namespace ClassLibrary1.Calculations
             
 
             wc = ((profile.Ac+((h-profile.depth)*width))/1e6)*mc * 9.81; //Weight of Concrete T-Beam [N/m]
-            own_weight = wc + wd;
-            liveLoad = liveLoad * (width / 1000); // Imposed load in [N/m]
+            wd = ((profile.w * profile.t) / 1e6) * ms * 9.81; // Weight of steel deck in T-beam in [N/m]
             wd_super = wd_super * (width / 1000); // Superimposed load in [N/m]
-            w = SharedData.phi_uls_dl * (own_weight + wd_super) + SharedData.phi_uls_ll * liveLoad; // [N/m]
 
+            own_weight = wc + wd;
+            liveLoad = liveLoad * (width / 1000); // Imposed load in [N/m]      
+            
+            w = SharedData.phi_uls_dl * (own_weight + wd_super) + SharedData.phi_uls_ll * liveLoad; // [N/m]
             Mu = (w * Math.Pow(span, 2) / 8) * 1000; //[N.mm]
             
 
@@ -69,16 +71,11 @@ namespace ClassLibrary1.Calculations
             
             
         }
-
         public String printFullRecord()
         {
             StringBuilder sb = new StringBuilder();
-            //sb.Append(c.printMessages());
+            sb.Append(c.printMessages());
             return sb.ToString();
         }
-
-
-
-
     }
 }
