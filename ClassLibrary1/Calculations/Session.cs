@@ -20,6 +20,7 @@ namespace ClassLibrary1.Calculations
         static double[] slabThickness;
         static double[] spanLengths;
         public const char Space = ' ';
+        public const char Dash = '-';
 
         public static void DoLogic()
         {

@@ -85,6 +85,65 @@ namespace ClassLibrary1.Calculations
             calculateRebarRequirement();
             addMessage(recordAnalysisStatistics("Data"));
             addMessage(recordAnalysisStatistics("Rebar"));
+            if (Mr < Mu)
+            {
+                ULS_limited = true;
+                if (verbose)
+                {
+                    addMessage(Environment.NewLine);
+                    addMessage("The design is ULS controlled.\n");
+                    addMessage(recordAnalysisStatistics("Forces"));
+                }
+            }
+            if (x / d > 0.5)
+            {
+                overReinforced = true;
+            }
+            As_record = As;
+            if (span > getSpanLimit() & !overReinforced & !ULS_limited)
+            {
+                SLS_limited = true;
+                addMessage("The design is SLS controlled.\n");
+                if (addRebarForSLS & !ULS_limited)
+                {
+                    addMessage(Environment.NewLine);
+                    addMessage("Data at START of remedial step: " + new string(Session.Space,1));
+                    addMessage(recordAnalysisStatistics("Deflections"));
+
+                    calculateUpdatedRebarRequirement();
+
+                    addMessage(Environment.NewLine);
+                    addMessage("Data at END of remedial step: " + new string(Session.Space,1));
+                    addMessage(recordAnalysisStatistics("Deflections"));
+                    addMessage(recordAnalysisStatistics("Rebar"));
+                }
+            }
+            if (x / d > 0.5)
+            {
+                overReinforced = true;
+            }
+            if (Mr < Mu)
+            {
+                ULS_limited = true;
+            }
+            if (ULS_limited | overReinforced)
+            {
+                if (verbose)
+                {
+                    addMessage(Environment.NewLine);
+                    addMessage("The design has become ULS controlled while adding steel to control deflections" + Environment.NewLine);
+                    addMessage(recordAnalysisStatistics("Forces"));
+                }
+            }
+            if (!SLS_limited)
+            {
+                addMessage(Environment.NewLine);
+                addMessage("Force record: " + Environment.NewLine );
+                addMessage(recordAnalysisStatistics("Forces"));
+                getSpanLimit();
+                addMessage(Environment.NewLine);
+                addMessage(recordAnalysisStatistics("Deflections"));
+            }
         }
 
         private void calculateRebarRequirement()
@@ -258,12 +317,12 @@ namespace ClassLibrary1.Calculations
             {
                 if (SharedData.texFormat)
                 {
-                    rebarRequirement = new string(Session.Space,1);
+                    rebarRequirement = new string(Session.Dash,1);
 
                 }
                 else
                 {
-                    rebarRequirement = new string(Session.Space, 1);
+                    rebarRequirement = new string(Session.Dash, 1);
                 }
             }
             return rebarRequirement;
