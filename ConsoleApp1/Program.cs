@@ -13,8 +13,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-           Session.DoLogic();
-            //BeamResistanceCalculator.main();
+           Session.DoLogic();            
         } 
     }
 }

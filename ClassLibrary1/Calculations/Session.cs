@@ -112,6 +112,7 @@ namespace ClassLibrary1.Calculations
                         }
 
                         dataLine.Add(temp.c.printRebarRequirement());
+                        
                     }
 
                     String temp2 = dataLine[(dataLine.Count() - 1)];                    

@@ -247,7 +247,7 @@ namespace ClassLibrary1.Calculations
                 {
                     String nr = (Math.Round((A_rebar + extraRebar) / 10) * 10).ToString("F0");
 
-                    rebarRequirement = String.Format(" & ", nr) + new string(Session.Space, 1);
+                    rebarRequirement = nr  +  new string(Session.Space, 1);
                 }
                 else
                 {
@@ -258,12 +258,12 @@ namespace ClassLibrary1.Calculations
             {
                 if (SharedData.texFormat)
                 {
-                    rebarRequirement = String.Format(" & ", " ");
+                    rebarRequirement = new string(Session.Space,1);
 
                 }
                 else
                 {
-                    rebarRequirement = String.Format(" & ", " ");
+                    rebarRequirement = new string(Session.Space, 1);
                 }
             }
             return rebarRequirement;
