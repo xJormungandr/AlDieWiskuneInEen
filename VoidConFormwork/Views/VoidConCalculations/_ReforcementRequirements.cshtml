@@ -1,0 +1,42 @@
+﻿@model ClassLibrary1.Models.Results
+
+<h3>@Model.profileName</h3>
+<div class="x_content">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>[kPa]</th>
+                <th>[kPa]</th>
+                <th>[kPa]</th>
+                <th>[mm]</th>
+
+                @{
+                    foreach (var item in Model.profileLengths)
+                    {
+                        <th>@item</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                foreach (var item in Model.values)
+                {
+                    <tr>
+                        <td scope="row">@item.liveLoad</td>                        
+                        <td >@item.deadLoad.ToString("f2")</td>                        
+                        <td>@item.factoredLoad.ToString("f2")</td>
+                        <td>@item.slabThickness</td>
+
+                        @foreach (var value in item.extraRebar)
+                        {
+                            <td>@value</td>
+                        }
+                    </tr>
+                }
+            }         
+
+        </tbody>
+    </table>
+</div>

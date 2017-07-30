@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var isBusy = false;
+    function GetValues()
+    {
+        if (!isBusy)
+        {
+            isBusy = true;
+            var Value = $("#cmbProfiles").val();
+
+            var Html = '<div class="text-center"><i class="fa fa-4x fa-spin fa-spinner"></i></div>';
+            $("#divCalculations").append(Html);
+
+            $.ajax({
+                url: "/VoidConCalculations/_ReforcementRequirements?Profile=" + Value,
+                cache: false,
+                success: function (html) {
+                    isBusy = false;
+                    $("#divCalculations").html(html);
+                }
+            });
+        }    
+        
+    }
+
+</script>
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Reforment Requirements</h3>
+            </div>     
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Inputs</h2>                       
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <div data-parsley-validate class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Profiles</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <select id="cmbProfiles" class="form-control">
+                                        <option value="VP50">VP50</option>
+                                        <option value="VP115">VP115</option>
+                                        <option value="VP200">VP200</option>                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="divCalculations" class="form-group">
+
+                            </div>
+                            
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-xs-12">                                   
+                                    <div class="text-center">
+                                        <button type="button" onclick="GetValues()" class="btn btn-success">Calculate</button>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+

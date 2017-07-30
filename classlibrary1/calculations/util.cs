@@ -14,7 +14,7 @@ namespace ClassLibrary1.Calculations
             d.Add(start);
             for (int i = 1; i <= numberOfExtra; i++)
             {
-                d[i] = d[i - 1] + increment;
+                d.Add(d[i - 1] + increment);
             }
             return d;
         }
