@@ -50,27 +50,23 @@ public static void DoLogic(enum_Profiles inputProfile)
             }
 
             Profile CurrentProfile = null;
-            switch (inputProfile.ToString())
+            switch (inputProfile)
             {
-                case enum_Profiles.vp50.ToString():
+                case enum_Profiles.vp50:
                     CurrentProfile = new Profile("VP50", 50, 115, 415, 625, 0.8, 292, 20.55, 6450);
                     break;
-                case enum_Profiles.vp115.ToString():
+                case enum_Profiles.vp115:
                     CurrentProfile = new Profile("VP115", 115, 150, 600, 1250, 0.8, 320, 18.75, 19625);
                     break;
-                case enum_Profiles.vp200.ToString():
+                case enum_Profiles.vp200:
                     CurrentProfile = new Profile("VP200", 200, 230, 760, 1250, 0.8, 384, 15.20, 52500);
                     break;
                 default:
                     break;
             }
-            Profile vp50 = new Profile("VP50", 50, 115, 415, 625, 0.8, 292, 20.55, 6450);
-            Profile vp115 = new Profile("VP115", 115, 150, 600, 1250, 0.8, 320, 18.75, 19625);
-            Profile vp200 = new Profile("VP200", 200, 230, 760, 1250, 0.8, 384, 15.20, 52500);
 
-            profileList.Add(vp50);
-            profileList.Add(vp115);
-            profileList.Add(vp200);
+            profileList.Add(CurrentProfile);
+
 
             liveLoad = new double[] { 1500, 2000, 2500, 3000, 4000, 5000, 7500 };
 

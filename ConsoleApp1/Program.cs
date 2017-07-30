@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MathNet.Numerics;
 using ClassLibrary1.Calculations;
+using ClassLibrary1;
 
 
 namespace ConsoleApp1
@@ -13,7 +14,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-           Session.DoLogic();            
+           Session.DoLogic(enum_Profiles.vp50);            
         } 
     }
 }
