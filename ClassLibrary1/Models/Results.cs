@@ -8,8 +8,8 @@ namespace ClassLibrary1.Models
 {
     class Results
     {
-        public string profileName;
-        public static List<string> profileLengths = new List<string>();
+        public string profileName { get; set; }
+        public static List<string> profileLengths { get; set; }
 
 
 
