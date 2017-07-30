@@ -52,6 +52,7 @@
     <Compile Include="Calculations\SharedData.cs" />
     <Compile Include="Calculations\Util.cs" />
     <Compile Include="Calculations\VoidconBeamCalculator.cs" />
+    <Compile Include="Models\Results.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
