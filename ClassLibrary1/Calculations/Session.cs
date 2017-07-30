@@ -34,7 +34,7 @@ namespace ClassLibrary1.Calculations
 
 
 
-public static void DoLogic()
+public static void DoLogic(enum_Profiles inputProfile)
         {
 
             try
@@ -49,6 +49,21 @@ public static void DoLogic()
                 return;
             }
 
+            Profile CurrentProfile = null;
+            switch (inputProfile.ToString())
+            {
+                case enum_Profiles.vp50.ToString():
+                    CurrentProfile = new Profile("VP50", 50, 115, 415, 625, 0.8, 292, 20.55, 6450);
+                    break;
+                case enum_Profiles.vp115.ToString():
+                    CurrentProfile = new Profile("VP115", 115, 150, 600, 1250, 0.8, 320, 18.75, 19625);
+                    break;
+                case enum_Profiles.vp200.ToString():
+                    CurrentProfile = new Profile("VP200", 200, 230, 760, 1250, 0.8, 384, 15.20, 52500);
+                    break;
+                default:
+                    break;
+            }
             Profile vp50 = new Profile("VP50", 50, 115, 415, 625, 0.8, 292, 20.55, 6450);
             Profile vp115 = new Profile("VP115", 115, 150, 600, 1250, 0.8, 320, 18.75, 19625);
             Profile vp200 = new Profile("VP200", 200, 230, 760, 1250, 0.8, 384, 15.20, 52500);

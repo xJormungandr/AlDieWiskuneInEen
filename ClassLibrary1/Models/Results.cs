@@ -10,17 +10,15 @@ namespace ClassLibrary1.Models
     {
         public string profileName { get; set; }
         public static List<string> profileLengths { get; set; }
-
-
-
+        
     }
 
     public class ResultsList
     {
-        public double imposedLoad;
-        public double deadLoad;
-        public double factoredLoad;
-        public double slabThickness;
+        public double imposedLoad { get; set; }
+        public double deadLoad { get; set; }
+        public double factoredLoad { get; set; }
+        public double slabThickness { get; set; }
     }
 
 }
