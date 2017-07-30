@@ -16,7 +16,7 @@ namespace ClassLibrary1.Models
 
     public class ResultsList
     {
-        public double imposedLoad { get; set; }
+        public double liveLoad { get; set; }
         public double deadLoad { get; set; }
         public double factoredLoad { get; set; }
         public double slabThickness { get; set; }

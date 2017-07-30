@@ -26,10 +26,10 @@ namespace ClassLibrary1.Calculations
         public static Boolean Bool50 = true;
         public static Boolean Bool115 = true;
         public static Boolean Bool200 = true;
-        public static FileStream ostrm;
-        public static StreamWriter writer;
-        public static TextWriter oldOut = Console.Out;
-        public static String path = "C:/Users/DenJormungandr/Desktop/VoidconOutput.txt";
+        //public static FileStream ostrm;
+        //public static StreamWriter writer;
+        //public static TextWriter oldOut = Console.Out;
+        //public static String path = "C:/Users/DenJormungandr/Desktop/VoidconOutput.txt";
 
 
 
@@ -38,16 +38,16 @@ namespace ClassLibrary1.Calculations
         public static Results DoLogic(enum_Profiles inputProfile, double [] liveLoad)
         {
 
-            try
-            {
-                ostrm = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open VoidconOutput.txt for writing");
-                Console.WriteLine(e.Message);                
-            }
+            //try
+            //{
+            //    ostrm = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
+            //    writer = new StreamWriter(ostrm);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Cannot open VoidconOutput.txt for writing");
+            //    Console.WriteLine(e.Message);                
+            //}
 
             var ReturnResults = new Results();
 
@@ -96,38 +96,38 @@ namespace ClassLibrary1.Calculations
 
                 }
 
-                Console.SetOut(writer);
-                doCalculations(profile, ReturnResults.profileLengths, slabThickness);
+                //Console.SetOut(writer);
+                doCalculations(profile, ReturnResults.profileLengths, slabThickness, ref ReturnResults);
 
             }
-            Console.SetOut(oldOut);
-            writer.Close();
-            ostrm.Close();
+            //Console.SetOut(oldOut);
+            //writer.Close();
+            //ostrm.Close();
 
-            return new Results();
+            return ReturnResults;
         }
 
-        public static void doCalculations(Profile p, List<Double> spanList, double[] slabThickness)
+        public static void doCalculations(Profile p, List<Double> spanList, double[] slabThickness, ref Results results)
         {
 
-            Console.Write(" & & & & ");
+            //Console.Write(" & & & & ");
 
 
-            foreach (Double s in spanList)
-            {
-                if (spanList.IndexOf(s) == spanList.Count() - 1)
-                {
-                    Console.Write(s.ToString("F2") + new string(Space, 1));
+            //foreach (Double s in spanList)
+            //{
+            //    if (spanList.IndexOf(s) == spanList.Count() - 1)
+            //    {
+            //        Console.Write(s.ToString("F2") + new string(Space, 1));
 
-                }
-                else
-                {
-                    Console.Write(s.ToString("F2") + new string(Space, 1));
+            //    }
+            //    else
+            //    {
+            //        Console.Write(s.ToString("F2") + new string(Space, 1));
 
-                }
-            };
-            Console.WriteLine("");
-            Console.WriteLine("");
+            //    }
+            //};
+            //Console.WriteLine("");
+            //Console.WriteLine("");
 
 
             foreach (Double t in slabThickness)
@@ -135,35 +135,40 @@ namespace ClassLibrary1.Calculations
                 foreach (Double LL in liveLoad)
                 {
                     Boolean printIni = true;
-                    foreach (Double L in spanLengths)
+                    foreach (Double L in spanList)
                     {
+                        var ResultList = new ResultsList();
                         beamList.Add(new Beam(p, L, p.webWidth, t, LL, SharedData.super_dead));
                         Beam temp = beamList[(beamList.Count() - 1)];
                         if (printIni)
                         {
                             if (p.name == "VP50" && Bool50)
                             {
-                                Console.WriteLine(p.name);
+                                //Console.WriteLine(p.name);
                                 Bool50 = false;
                             }
                             else if (p.name == "VP115" && Bool115)
                             {
-                                Console.WriteLine(p.name);
+                                //Console.WriteLine(p.name);
                                 Bool115 = false;
                             }
                             else if (p.name == "VP200" && Bool200)
                             {
-                                Console.WriteLine(p.name);
+                                //Console.WriteLine(p.name);
                                 Bool200 = false;
                             }
                             dataLine.Add((LL / 1000).ToString("F2"));
-                            dataLine.Add(new string(Space, 2));
+                            ResultList.liveLoad = (LL / 1000);
+                            //dataLine.Add(new string(Space, 2));
                             dataLine.Add((temp.own_weight / (temp.width / 1000) / 1000).ToString("F3"));
-                            dataLine.Add(new string(Space, 2));
+                            ResultList.deadLoad = (temp.own_weight / (temp.width / 1000) / 1000);
+                           // dataLine.Add(new string(Space, 2));
                             dataLine.Add((temp.w / (temp.width / 1000) / 1000).ToString("F2"));
-                            dataLine.Add(new string(Space, 2));
+                            ResultList.factoredLoad = (temp.w / (temp.width / 1000) / 1000);
+                            //dataLine.Add(new string(Space, 2));
                             dataLine.Add((t).ToString("F0"));
-                            dataLine.Add(new string(Space, 2));
+                            ResultList.slabThickness = t;
+                            //dataLine.Add(new string(Space, 2));
                             printIni = false;
                         }
 

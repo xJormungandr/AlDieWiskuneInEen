@@ -8,10 +8,10 @@ namespace ClassLibrary1.Calculations
 {
     class Util
     {
-        public static double[] increment(double start, double increment, int numberOfExtra)
+        public static List<double> increment(double start, double increment, int numberOfExtra)
         {
-            double[] d = new double[numberOfExtra + 1];
-            d[0] = start;
+            var d = new List<double>();
+            d.Add(start);
             for (int i = 1; i <= numberOfExtra; i++)
             {
                 d[i] = d[i - 1] + increment;
