@@ -14,7 +14,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-           Session.DoLogic(enum_Profiles.vp50);            
+           Session.DoLogic(enum_Profiles.vp50, new double[] { 1500, 2000, 2500, 3000, 4000, 5000, 7500 });            
         } 
     }
 }

@@ -35,9 +35,10 @@ namespace ClassLibrary1.Calculations
 
 
 
-        public static Results DoLogic(enum_Profiles inputProfile, double [] liveLoad)
+        public static Results DoLogic(enum_Profiles inputProfile, double [] _liveLoad)
         {
 
+            liveLoad = _liveLoad;
             //try
             //{
             //    ostrm = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
@@ -50,6 +51,8 @@ namespace ClassLibrary1.Calculations
             //}
 
             var ReturnResults = new Results();
+            ReturnResults.profileLengths = new List<double>();
+            
 
             Profile CurrentProfile = null;
             switch (inputProfile)
@@ -109,6 +112,7 @@ namespace ClassLibrary1.Calculations
 
         public static void doCalculations(Profile p, List<Double> spanList, double[] slabThickness, ref Results results)
         {
+            results.values = new List<ResultsList>();
 
             //Console.Write(" & & & & ");
 
@@ -135,9 +139,13 @@ namespace ClassLibrary1.Calculations
                 foreach (Double LL in liveLoad)
                 {
                     Boolean printIni = true;
+
+                    var _ResultList = new ResultsList();
+                    _ResultList.extraRebar = new List<string>();
+
                     foreach (Double L in spanList)
                     {
-                        var ResultList = new ResultsList();
+
                         beamList.Add(new Beam(p, L, p.webWidth, t, LL, SharedData.super_dead));
                         Beam temp = beamList[(beamList.Count() - 1)];
                         if (printIni)
@@ -158,26 +166,27 @@ namespace ClassLibrary1.Calculations
                                 Bool200 = false;
                             }
                             dataLine.Add((LL / 1000).ToString("F2"));
-                            ResultList.liveLoad = (LL / 1000);
+                            _ResultList.liveLoad = (LL / 1000);
                             //dataLine.Add(new string(Space, 2));
                             dataLine.Add((temp.own_weight / (temp.width / 1000) / 1000).ToString("F3"));
-                            ResultList.deadLoad = (temp.own_weight / (temp.width / 1000) / 1000);
+                            _ResultList.deadLoad = (temp.own_weight / (temp.width / 1000) / 1000);
                            // dataLine.Add(new string(Space, 2));
                             dataLine.Add((temp.w / (temp.width / 1000) / 1000).ToString("F2"));
-                            ResultList.factoredLoad = (temp.w / (temp.width / 1000) / 1000);
+                            _ResultList.factoredLoad = (temp.w / (temp.width / 1000) / 1000);
                             //dataLine.Add(new string(Space, 2));
                             dataLine.Add((t).ToString("F0"));
-                            ResultList.slabThickness = t;
+                            _ResultList.slabThickness = t;
                             //dataLine.Add(new string(Space, 2));
                             printIni = false;
                         }
 
                         dataLine.Add(temp.c.printRebarRequirement());
-                        ResultList.extraRebar.Add(temp.c.printRebarRequirement());
-
-                        results.values.Add(ResultList);
+                        _ResultList.extraRebar.Add(temp.c.printRebarRequirement());
+                                                
 
                     }
+
+                    results.values.Add(_ResultList);
 
                     String temp2 = dataLine[(dataLine.Count() - 1)];
                     String newtemp = temp2.Replace("&", "\\\\"); //Geen Fokken Idee Wat Hierdie Doen Nie
