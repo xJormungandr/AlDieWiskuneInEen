@@ -173,6 +173,9 @@ namespace ClassLibrary1.Calculations
                         }
 
                         dataLine.Add(temp.c.printRebarRequirement());
+                        ResultList.extraRebar.Add(temp.c.printRebarRequirement());
+
+                        results.values.Add(ResultList);
 
                     }
 
@@ -185,6 +188,7 @@ namespace ClassLibrary1.Calculations
                     }
                     Console.WriteLine();
                     dataLine = new List<string>();
+                    
                 }
                 if (t != slabThickness[slabThickness.Count() - 1])
                 {
