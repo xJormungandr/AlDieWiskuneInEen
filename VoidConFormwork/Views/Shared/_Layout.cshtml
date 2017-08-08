@@ -39,11 +39,11 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="~/r/images/img.jpg" alt="~/r." class="img-circle profile_img">
+                            <img src="~/r/images/Profile_Image.jpg" alt="~/r." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>John Doe</h2>
+                            <h2>Richard Barnard</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -54,7 +54,7 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a><i class="fa fa-home"></i>Reforment Req<span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-home"></i>Rebar Calculation<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/VoidConCalculations">Calculations</a></li>
                                         <li><a href="/VoidConCalculations">Settings</a></li>
@@ -189,7 +189,12 @@
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
-                        <ul class="nav navbar-nav navbar-right">
+                        
+                        @*............TOP LOGO SPAN OVER NAVIGATION BAR..............
+                        <span class="image"><img src="~/r/images/US_Logo2.jpg" width="1118" /></span>*@
+                        
+
+                        @*<ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <img src="~/r/images/img.jpg" alt="">John Doe
@@ -206,8 +211,8 @@
                                     <li><a href="javascript:;">Help</a></li>
                                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                                 </ul>
-                            </li>
-                            <li role="presentation" class="dropdown">
+                            </li>*@
+                            @*<li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
                                     <span class="badge bg-green">6</span>
@@ -269,7 +274,7 @@
                                             </a>
                                         </div>
                                     </li>
-                                </ul>
+                                </ul>*@
                             </li>
                         </ul>
                     </nav>
@@ -280,12 +285,12 @@
             @RenderBody()
             <!-- /page content -->
             <!-- footer content -->
-            <footer>
+            @*<footer>
                 <div class="pull-right">
                     Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
                 </div>
                 <div class="clearfix"></div>
-            </footer>
+            </footer>*@
             <!-- /footer content -->
         </div>
     </div>

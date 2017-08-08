@@ -17,7 +17,7 @@
             $("#divCalculations").append(Html);
 
             $.ajax({
-                url: "/VoidConCalculations/_ReforcementRequirements?Profile=" + Value,
+                url: "/VoidConCalculations/_RebarRequirement?Profile=" + Value,
                 cache: false,
                 success: function (html) {
                     isBusy = false;
@@ -34,7 +34,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Reforment Requirements</h3>
+                <h3>Rebar Requirement</h3>
             </div>     
         </div>
         <div class="clearfix"></div>

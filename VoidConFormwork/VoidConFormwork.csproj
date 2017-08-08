@@ -184,10 +184,14 @@
     <Content Include="r\images\prod-3.jpg" />
     <Content Include="r\images\prod-4.jpg" />
     <Content Include="r\images\prod-5.jpg" />
+    <Content Include="r\images\Profile_Image.jpg" />
     <Content Include="r\images\user.png" />
+    <Content Include="r\images\US_Logo1.jpg" />
+    <Content Include="r\images\US_Logo2.jpg" />
     <Content Include="r\images\visa.png" />
     <Content Include="r\js\datepicker\daterangepicker.js" />
     <Content Include="r\js\moment\moment.min.js" />
+    <Content Include="r\images\US_Logo3.png" />
     <Content Include="r\vendors\animate.css\animate.css" />
     <Content Include="r\vendors\animate.css\animate.min.css" />
     <Content Include="r\vendors\animate.css\gulpfile.js" />
@@ -4461,7 +4465,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\VoidConCalculations\Index.cshtml" />
-    <Content Include="Views\VoidConCalculations\_ReforcementRequirements.cshtml" />
+    <Content Include="Views\VoidConCalculations\_RebarRequirement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

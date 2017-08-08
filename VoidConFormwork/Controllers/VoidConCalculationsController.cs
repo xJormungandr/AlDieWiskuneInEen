@@ -15,7 +15,7 @@ namespace VoidConFormwork.Controllers
             return View();
         }
 
-        public ActionResult _ReforcementRequirements(string Profile, double[] liveload = null  )
+        public ActionResult _RebarRequirement(string Profile, double[] liveload = null  )
         {
             //{ 1500, 2000, 2500, 3000, 4000, 5000, 7500 }
             if (liveload == null)
@@ -40,7 +40,7 @@ namespace VoidConFormwork.Controllers
 
             var Result = ClassLibrary1.Calculations.Session.DoLogic(profile, liveload);
 
-            return PartialView("~/Views/VoidConCalculations/_ReforcementRequirements.cshtml", Result);
+            return PartialView("~/Views/VoidConCalculations/_RebarRequirement.cshtml", Result);
         }
     }
 }
