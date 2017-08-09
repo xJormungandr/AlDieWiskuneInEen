@@ -11,16 +11,18 @@
             isBusy = true;
             var Value = $("#cmbProfiles").val();
 
-            var LoadValues = [];
+            var LoadValues = null;
 
             var Inputs = $(".LoadVal");
 
-            $.grep(Inputs, function (item, idx) {
+            $.grep(Inputs, function (item, idx) {                
 
-                var LoadValue = $(item).val();
-
-                if (LoadValue != "")
+                var LoadValue = $(item).val();            
+                if (LoadValue != "" && LoadValue != 0)
                 {
+                    if (LoadValues == null)
+                        LoadValues = [];
+
                     LoadValues.push(LoadValue);
                 }
                 
