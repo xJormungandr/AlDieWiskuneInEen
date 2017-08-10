@@ -51,6 +51,30 @@
         $("#AdditionalBtn").append(CloneHtml);
     }
 
+    function ToggleImages(cont)
+    {
+        var Value = $(cont).val();
+
+        if (Value == "VP50")
+        {
+            $("#VP50").removeClass("hidden");
+            $("#VP115").addClass("hidden");
+            $("#VP200").addClass("hidden");
+        } else if (Value == "VP115")
+        {
+            $("#VP115").removeClass("hidden");
+            $("#VP50").addClass("hidden");
+            $("#VP200").addClass("hidden");
+        } else
+        {
+            $("#VP200").removeClass("hidden");
+            $("#VP50").addClass("hidden");
+            $("#VP115").addClass("hidden");
+        }
+
+
+    }
+
 </script>
 
 <style>
@@ -83,12 +107,18 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Profiles</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <select id="cmbProfiles" class="form-control max-width300">
+                                    <select onchange="ToggleImages(this)" id="cmbProfiles" class="form-control max-width300">
                                         <option value="VP50">VP50</option>
                                         <option value="VP115">VP115</option>
                                         <option value="VP200">VP200</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <img id="VP50" src="~/r/images/Profile_Image.jpg" alt="~/r." class="img-circle center-block">
+                                <img id="VP115" src="~/r/images/prod-1.jpg" alt="~/r." class="img-circle hidden center-block">
+                                <img id="VP200" src="~/r/images/mastercard.png" alt="~/r." class="img-circle hidden center-block">
                             </div>
 
                             <div id="CloneHtml" class="form-group">
