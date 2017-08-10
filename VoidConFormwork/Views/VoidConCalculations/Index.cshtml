@@ -11,29 +11,33 @@
             isBusy = true;
             var Value = $("#cmbProfiles").val();
 
-            var LoadValues = null;
+            var LoadValues = "";            
 
             var Inputs = $(".LoadVal");
 
-            $.grep(Inputs, function (item, idx) {                
+            $.grep(Inputs, function (item, idx) {
 
-                var LoadValue = $(item).val();            
-                if (LoadValue != "" && LoadValue != 0)
-                {
-                    if (LoadValues == null)
-                        LoadValues = [];
-
-                    LoadValues.push(LoadValue);
+                var LoadValue = $(item).val();
+                if (LoadValue != "" && LoadValue != 0) {             
+                    LoadValues += LoadValue + "|";
                 }
-                
+
             })
 
             var Html = '<div class="text-center"><i class="fa fa-4x fa-spin fa-spinner"></i></div>';
             $("#divCalculations").append(Html);
+        
+            var JsonO = {                
+                    "Profile": Value,
+                    "liveload": LoadValues 
+            }           
 
             $.ajax({
-                url: "/VoidConCalculations/_RebarRequirement?Profile=" + Value + "&liveload=" + LoadValues,
+                url: "/VoidConCalculations/_RebarRequirement",
                 cache: false,
+                data: JsonO,
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "json",
                 success: function (html) {
                     isBusy = false;
                     $("#divCalculations").html(html);
@@ -46,27 +50,23 @@
 
         var CloneHtml = $("#CloneHtml").clone();
 
-        $("input",CloneHtml).val("");
+        $("input", CloneHtml).val("");
 
         $("#AdditionalBtn").append(CloneHtml);
     }
 
-    function ToggleImages(cont)
-    {
+    function ToggleImages(cont) {
         var Value = $(cont).val();
 
-        if (Value == "VP50")
-        {
+        if (Value == "VP50") {
             $("#VP50").removeClass("hidden");
             $("#VP115").addClass("hidden");
             $("#VP200").addClass("hidden");
-        } else if (Value == "VP115")
-        {
+        } else if (Value == "VP115") {
             $("#VP115").removeClass("hidden");
             $("#VP50").addClass("hidden");
             $("#VP200").addClass("hidden");
-        } else
-        {
+        } else {
             $("#VP200").removeClass("hidden");
             $("#VP50").addClass("hidden");
             $("#VP115").addClass("hidden");
@@ -78,11 +78,9 @@
 </script>
 
 <style>
-
-    .max-width300{
-        max-width:300px;
+    .max-width300 {
+        max-width: 300px;
     }
-
 </style>
 
 <div class="right_col" role="main">
@@ -123,15 +121,6 @@
 
                             <div id="CloneHtml" class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                   Live Load
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="number" class="form-control col-md-7 col-xs-12 max-width300 LoadVal">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                     Live Load
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -144,7 +133,16 @@
                                     Live Load
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="number"  class="form-control col-md-7 col-xs-12 max-width300 LoadVal">
+                                    <input type="number" class="form-control col-md-7 col-xs-12 max-width300 LoadVal">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Live Load
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="number" class="form-control col-md-7 col-xs-12 max-width300 LoadVal">
                                 </div>
                             </div>
 
