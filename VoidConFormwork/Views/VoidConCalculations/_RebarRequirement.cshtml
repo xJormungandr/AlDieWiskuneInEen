@@ -1,10 +1,15 @@
 ﻿@model ClassLibrary1.Models.Results
 
+<style>
+    .DarkerRow{background-color:dimgray}
+    th{text-align:center;}
+    td{text-align:center;}
+</style>
 
 
 <h3>@Model.profileName</h3>
 <div class="x_content">
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             
             <tr>
@@ -12,6 +17,7 @@
                 <th>Dead Load</th>
                 <th>Factored Load</th>
                 <th>Thickness</th>
+                <th colspan="@Model.profileLengths.Count()">Span Lengths</th>
             </tr>
 
             <tr>
@@ -23,7 +29,7 @@
                 @{
                     foreach (var item in Model.profileLengths)
                     {
-                        <th>@item</th>
+                        <th>@item.ToString("f2")</th>
                     }
                 }
             </tr>
@@ -31,20 +37,43 @@
         <tbody>
 
             @{
+                double currentThickness = 0.0;
                 foreach (var item in Model.values)
                 {
+                    if (currentThickness == 0.0){
+                        currentThickness = item.slabThickness;
+                    };
+
+                    if(currentThickness != item.slabThickness)
+                    {
+                        <tr class="DarkerRow">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+                            @foreach (var value in item.extraRebar)
+                            {
+                                <td></td>
+                            }
+
+                        </tr>
+                        currentThickness = item.slabThickness;
+                    }
+
                     <tr>
-                        <td scope="row">@item.liveLoad</td>                        
-                        <td >@item.deadLoad.ToString("f2")</td>                        
+                        <td scope="row">@item.liveLoad.ToString("f2")</td>
+                        <td >@item.deadLoad.ToString("f2")</td>
                         <td>@item.factoredLoad.ToString("f2")</td>
                         <td>@item.slabThickness</td>
 
                         @foreach (var value in item.extraRebar)
                         {
-                            <td>@value</td>                           
+                            <td>@value</td>
                         }
-                       
-                    </tr>                    
+
+
+                    </tr>
 
                 }
             }         
