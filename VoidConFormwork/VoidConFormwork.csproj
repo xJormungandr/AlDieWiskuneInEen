@@ -1326,6 +1326,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\VoidConCalculations\Index.cshtml" />
     <Content Include="Views\VoidConCalculations\_RebarRequirement.cshtml" />
+    <Content Include="Views\SupportDocuments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
