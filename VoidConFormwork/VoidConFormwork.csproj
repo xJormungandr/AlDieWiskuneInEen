@@ -191,6 +191,9 @@
     <Content Include="r\images\US_Logo1.jpg" />
     <Content Include="r\images\US_Logo2.jpg" />
     <Content Include="r\images\visa.png" />
+    <Content Include="r\images\VP115.jpg" />
+    <Content Include="r\images\VP200.jpg" />
+    <Content Include="r\images\VP50.jpg" />
     <Content Include="r\js\datepicker\daterangepicker.js" />
     <Content Include="r\js\moment\moment.min.js" />
     <Content Include="r\images\US_Logo3.png" />
