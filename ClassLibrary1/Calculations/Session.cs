@@ -186,7 +186,7 @@ namespace ClassLibrary1.Calculations
                     }
 
                     results.values.Add(_ResultList);
-
+                    
                     String temp2 = dataLine[(dataLine.Count() - 1)];
                     String newtemp = temp2.Replace("&", "\\\\"); //Geen Fokken Idee Wat Hierdie Doen Nie
                     dataLine.Add(newtemp);
@@ -198,6 +198,9 @@ namespace ClassLibrary1.Calculations
                     dataLine = new List<string>();
                     
                 }
+
+                
+
                 if (t != slabThickness[slabThickness.Count() - 1])
                 {
                     Console.WriteLine(Environment.NewLine);
@@ -209,6 +212,8 @@ namespace ClassLibrary1.Calculations
                     Console.WriteLine("Next Voidcon Formwork");
                     Console.WriteLine(Environment.NewLine);
                 }
+
+
             }
 
             Console.WriteLine();

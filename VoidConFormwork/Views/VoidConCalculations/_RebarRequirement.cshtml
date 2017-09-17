@@ -1,9 +1,19 @@
 ﻿@model ClassLibrary1.Models.Results
 
+
+
 <h3>@Model.profileName</h3>
 <div class="x_content">
     <table class="table">
         <thead>
+            
+            <tr>
+                <th>Live Load</th>
+                <th>Dead Load</th>
+                <th>Factored Load</th>
+                <th>Thickness</th>
+            </tr>
+
             <tr>
                 <th>[kPa]</th>
                 <th>[kPa]</th>
@@ -31,9 +41,11 @@
 
                         @foreach (var value in item.extraRebar)
                         {
-                            <td>@value</td>
+                            <td>@value</td>                           
                         }
-                    </tr>
+                       
+                    </tr>                    
+
                 }
             }         
 
