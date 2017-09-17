@@ -173,6 +173,7 @@
     <Content Include="r\build\js\custom.js" />
     <Content Include="r\build\js\custom.min.js" />
     <Content Include="r\css\maps\jquery-jvectormap-2.0.3.css" />
+    <Content Include="r\custom\myprintstyle.css" />
     <Content Include="r\images\american-express.png" />
     <Content Include="r\images\cropper.jpg" />
     <Content Include="r\images\images.png" />
@@ -198,6 +199,7 @@
     <Content Include="r\js\datepicker\daterangepicker.js" />
     <Content Include="r\js\moment\moment.min.js" />
     <Content Include="r\images\US_Logo3.png" />
+    <Content Include="r\js\printthis\printthis.js" />
     <Content Include="r\vendors\bootstrap-progressbar\bootstrap-progressbar.js" />
     <Content Include="r\vendors\bootstrap-progressbar\bootstrap-progressbar.min.js" />
     <Content Include="r\vendors\bootstrap-progressbar\css\bootstrap-progressbar-2.0.0.css" />
