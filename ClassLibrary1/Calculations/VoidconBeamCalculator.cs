@@ -49,6 +49,8 @@ namespace ClassLibrary1.Calculations
         double h;
         double allowed_span;
         double deck_depth;
+        public double LL;
+        public double DL;
         public Boolean overReinforced = false;
         public Boolean SLS_limited = false;
         public Boolean ULS_limited = false;
@@ -81,7 +83,12 @@ namespace ClassLibrary1.Calculations
             gamma_r = 1 / SharedData.gamma_r;
             gamma_c = 1 / SharedData.gamma_c;
 
+            LL = theBeam.UnfactoredLL;
+            DL = theBeam.UnfactoredDL;
+
             calculateRebarRequirement();
+            FireRatingCalculator();
+
             addMessage(recordAnalysisStatistics("Data"));
             addMessage(recordAnalysisStatistics("Rebar"));
             if (Mr < Mu)
@@ -110,6 +117,7 @@ namespace ClassLibrary1.Calculations
                     addMessage(recordAnalysisStatistics("Deflections"));
 
                     calculateUpdatedRebarRequirement();
+                    FireRatingCalculator();
 
                     addMessage(Environment.NewLine);
                     addMessage("Data at END of remedial step: " + new string(Session.Space,1));
@@ -431,5 +439,68 @@ namespace ClassLibrary1.Calculations
             return sb.ToString();
         }
 
+
+        public double FireRatingCalculator()
+        {
+            double fireRating = 0.0;
+            double ky = 0.78;   //Reduction Factor
+            double a500 = 23;   //mm @500 degreesC
+            string TypeDeck = p.name;
+            double designFy = 450; //MPa
+            double fyT = designFy * ky; //MPa
+            double VpHeight = 0.0; //mm
+            double VpB = 0.0; //mm
+            double additionalOW = 0.9; //kPa
+            double barDiaEff = 16;  //mm for determining effective depth
+            double cover = 25; //mm Concrete cover outside of bars
+            double designFc = 25;  //Mpa Cylinder strength
+            double FLS_Load;
+            double FLS_Load_Rib;
+            double d_eff;
+            double af_max;
+            double VpThickness = h;
+            double FLS_BendingMoment;          
+            
+            switch (TypeDeck)
+            {
+                case "VP50":
+                    {
+                        VpHeight = 50;
+                        VpB = 415;
+                        break;
+                    }
+                case "VP115":
+                    {
+                        VpHeight = 115;
+                        VpB = 600;
+                        break;
+                    }
+                case "VP200":
+                    {
+                        VpHeight = 200;
+                        VpB = 760;
+                        break;
+                    }
+
+            }
+
+            FLS_Load = 0.3 * LL + 1.0 * (additionalOW + DL);
+            FLS_Load_Rib = FLS_Load * VpB / 1000;
+            d_eff = VpThickness - cover - barDiaEff / 2;
+            af_max = VpThickness - VpHeight - a500;
+            FLS_BendingMoment = FLS_Load_Rib * (Math.Pow(span,2)) / 8;
+            
+            fireRating = (-(-fyT * d_eff) - Math.Sqrt(Math.Pow((fyT * d_eff), 2) - 4 * (fyT * fyT / 2 / 0.85 / designFc / VpB) * FLS_BendingMoment * 1e6)) / 2 / (fyT * fyT / 2 / 0.85 / designFc / VpB);
+
+            return fireRating;
+        }
+
+
+
+
+
+
+
     }
+
 }

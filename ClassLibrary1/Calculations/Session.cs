@@ -141,6 +141,7 @@ namespace ClassLibrary1.Calculations
 
                     var _ResultList = new ResultsList();
                     _ResultList.extraRebar = new List<string>();
+                    _ResultList.fireRating = new List<string>();
 
                     foreach (Double L in spanList)
                     {
@@ -179,9 +180,35 @@ namespace ClassLibrary1.Calculations
                             printIni = false;
                         }
 
+
                         dataLine.Add(temp.c.printRebarRequirement());
                         _ResultList.extraRebar.Add(temp.c.printRebarRequirement());
-                                                
+
+                        double extraRebarULS;
+                        double extraRebarFLS;
+
+                        if (temp.c.printRebarRequirement() == "-")
+                        {
+                            extraRebarULS = 0.0;
+                            extraRebarFLS = Convert.ToDouble(temp.c.FireRatingCalculator());
+
+                        }
+                        else
+                        {
+
+                            extraRebarULS = Convert.ToDouble(temp.c.printRebarRequirement());
+                            extraRebarFLS = Convert.ToDouble(temp.c.FireRatingCalculator());
+                        }
+
+                        
+                        if(extraRebarFLS > extraRebarULS)
+                        {
+                            _ResultList.fireRating.Add(extraRebarFLS.ToString("f0"));
+                        }
+                        else
+                        {
+                            _ResultList.fireRating.Add(extraRebarFLS.ToString("f0"));
+                        }
 
                     }
 

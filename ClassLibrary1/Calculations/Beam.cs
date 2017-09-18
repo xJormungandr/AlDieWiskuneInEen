@@ -30,12 +30,17 @@ namespace ClassLibrary1.Calculations
         public double h;
         public double mod_factor;
 
+        public double UnfactoredLL;
+        public double UnfactoredDL;
+
         public double d;
         public double y; // The centroid of the tension steel
         public double fy; // The weighted yield stress
         public double A_rebar;
         public double neutralAxisDepth;
         public VoidconBeamCalculator c;
+
+        
 
         public Profile profile;
 
@@ -60,6 +65,9 @@ namespace ClassLibrary1.Calculations
             wd = ((profile.w * profile.t) / 1e6) * ms * 9.81; // Weight of steel deck in T-beam in [N/m]
             wd_super = wd_super * (width / 1000); // Superimposed load in [N/m]
 
+            this.UnfactoredLL = LL/1000;
+            this.UnfactoredDL = (wc + wd) / width;
+
             own_weight = wc + wd;
             liveLoad = liveLoad * (width / 1000); // Imposed load in [N/m]      
             
@@ -68,6 +76,7 @@ namespace ClassLibrary1.Calculations
             
 
             c = new VoidconBeamCalculator(this);
+
             
             
         }

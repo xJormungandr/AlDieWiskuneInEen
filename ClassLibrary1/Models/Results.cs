@@ -21,6 +21,7 @@ namespace ClassLibrary1.Models
         public double factoredLoad { get; set; }
         public double slabThickness { get; set; }
         public List<string> extraRebar { get; set; }
+        public List<string> fireRating { get; set; }
     }
 
 }
