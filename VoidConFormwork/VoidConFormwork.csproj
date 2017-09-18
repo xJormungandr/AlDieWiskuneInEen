@@ -1302,6 +1302,12 @@
     <Content Include="r\vendors\validator\validator.jquery.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="r\Documents\Fire_Design_Steps.pdf" />
+    <Content Include="r\Documents\Voidcon_Fire_Resistance_Assessment.pdf" />
+    <Content Include="r\Documents\VoidPro_115.pdf" />
+    <Content Include="r\Documents\VoidPro_200.pdf" />
+    <Content Include="r\Documents\VoidPro_50.pdf" />
+    <Content Include="r\Documents\Void_Pro_Drawings.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
