@@ -33,94 +33,101 @@
     <label><input onchange="ToggleFire(this)" type="checkbox" value="">Check Fire Rating Requirements</label>
 </div>
 
-<h3>@Model.profileName</h3>
-<div class="x_content">
-    <table class="table table-bordered">
-        <thead>
+<div id="profileName">
+    <h3 >@Model.profileName</h3>
+</div>
 
-            <tr>
-                <th>Live Load</th>
-                <th>Dead Load</th>
-                <th>Factored Load</th>
-                <th>Thickness</th>
-                <th colspan="@Model.profileLengths.Count()">Span Lengths [m]</th>
-            </tr>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th colspan="@Model.profileLengths.Count()">Additional Rebar Reinforcement Required [mm^2]</th>
-            </tr>
+<div class="Print">    
+    <div class="x_content">
+        <table class="table table-bordered">
+            <thead>
 
-            <tr>
-                <th>[kPa]</th>
-                <th>[kPa]</th>
-                <th>[kPa]</th>
-                <th>[mm]</th>
+                <tr>
+                    <th>Live Load</th>
+                    <th>Dead Load</th>
+                    <th>Factored Load</th>
+                    <th>Thickness</th>
+                    <th colspan="@Model.profileLengths.Count()">Span Lengths [m]</th>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th colspan="@Model.profileLengths.Count()">Additional Rebar Reinforcement Required [mm^2]</th>
+                </tr>
+
+                <tr>
+                    <th>[kPa]</th>
+                    <th>[kPa]</th>
+                    <th>[kPa]</th>
+                    <th>[mm]</th>
+
+                    @{
+                        foreach (var item in Model.profileLengths)
+                        {
+                            <th>@item.ToString("f2")</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
 
                 @{
-                    foreach (var item in Model.profileLengths)
+                    double currentThickness = 0.0;
+                    foreach (var item in Model.values)
                     {
-                        <th>@item.ToString("f2")</th>
-                    }
-                }
-            </tr>
-        </thead>
-        <tbody>
+                        if (currentThickness == 0.0)
+                        {
+                            currentThickness = item.slabThickness;
+                        };
 
-            @{
-                double currentThickness = 0.0;
-                foreach (var item in Model.values)
-                {
-                    if (currentThickness == 0.0)
-                    {
-                        currentThickness = item.slabThickness;
-                    };
+                        if (currentThickness != item.slabThickness)
+                        {
+                            <tr class="DarkerRow">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-                    if (currentThickness != item.slabThickness)
-                    {
-                        <tr class="DarkerRow">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                @foreach (var value in item.extraRebar)
+                                {
+                                    <td></td>
+                                }
+
+                            </tr>
+                            currentThickness = item.slabThickness;
+                        }
+
+                        <tr>
+                            <td scope="row">@item.liveLoad.ToString("f2")</td>
+                            <td>@item.deadLoad.ToString("f2")</td>
+                            <td>@item.factoredLoad.ToString("f2")</td>
+                            <td>@item.slabThickness</td>
 
                             @foreach (var value in item.extraRebar)
                             {
-                                <td></td>
+                                <td class="extraRebar">@value</td>
                             }
 
+                            @foreach (var value in item.fireRating)
+                            {
+                                <td class="hidden fireRating">@value</td>
+                            }
+
+
                         </tr>
-                        currentThickness = item.slabThickness;
+
                     }
-
-                    <tr>
-                        <td scope="row">@item.liveLoad.ToString("f2")</td>
-                        <td>@item.deadLoad.ToString("f2")</td>
-                        <td>@item.factoredLoad.ToString("f2")</td>
-                        <td>@item.slabThickness</td>
-
-                        @foreach (var value in item.extraRebar)
-                        {
-                            <td class="extraRebar">@value</td>
-                        }
-
-                        @foreach (var value in item.fireRating)
-                        {
-                            <td class="hidden fireRating">@value</td>
-                        }
-
-
-                    </tr>
-
                 }
-            }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 <div class="text-center">
     <button type="button" onclick="Print()" class="btn btn-success">Print</button>
 </div>
