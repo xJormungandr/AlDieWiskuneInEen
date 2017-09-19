@@ -1,17 +1,43 @@
 ﻿@model ClassLibrary1.Models.Results
 
 <style>
-    .DarkerRow{background-color:dimgray}
-    th{text-align:center;}
-    td{text-align:center;}
-</style>
+    .DarkerRow {
+        background-color: dimgray
+    }
 
+    th {
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+<script>
+    function ToggleFire(that)
+    {
+        if ($(that).is(":checked"))
+        {
+            $(".extraRebar").addClass("hidden");
+            $(".fireRating").removeClass("hidden");
+        } else {
+            $(".extraRebar").removeClass("hidden");
+            $(".fireRating").addClass("hidden");
+        }
+    }
+
+</script>
+
+
+<div class="form-group text-center checkbox">
+    <label><input onchange="ToggleFire(this)" type="checkbox" value="">Check Fire Rating Requirements</label>
+</div>
 
 <h3>@Model.profileName</h3>
 <div class="x_content">
     <table class="table table-bordered">
         <thead>
-            
+
             <tr>
                 <th>Live Load</th>
                 <th>Dead Load</th>
@@ -48,17 +74,18 @@
                 double currentThickness = 0.0;
                 foreach (var item in Model.values)
                 {
-                    if (currentThickness == 0.0){
+                    if (currentThickness == 0.0)
+                    {
                         currentThickness = item.slabThickness;
                     };
 
-                    if(currentThickness != item.slabThickness)
+                    if (currentThickness != item.slabThickness)
                     {
                         <tr class="DarkerRow">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
 
                             @foreach (var value in item.extraRebar)
                             {
@@ -71,20 +98,25 @@
 
                     <tr>
                         <td scope="row">@item.liveLoad.ToString("f2")</td>
-                        <td >@item.deadLoad.ToString("f2")</td>
+                        <td>@item.deadLoad.ToString("f2")</td>
                         <td>@item.factoredLoad.ToString("f2")</td>
                         <td>@item.slabThickness</td>
 
                         @foreach (var value in item.extraRebar)
                         {
-                            <td>@value</td>
+                            <td class="extraRebar">@value</td>
+                        }
+
+                        @foreach (var value in item.fireRating)
+                        {
+                            <td class="hidden fireRating">@value</td>
                         }
 
 
                     </tr>
 
                 }
-            }         
+            }
 
         </tbody>
     </table>
