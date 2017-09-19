@@ -25,29 +25,12 @@ namespace ClassLibrary1.Calculations
         public static Boolean Bool50 = true;
         public static Boolean Bool115 = true;
         public static Boolean Bool200 = true;
-        //public static FileStream ostrm;
-        //public static StreamWriter writer;
-        //public static TextWriter oldOut = Console.Out;
-        //public static String path = "C:/Users/DenJormungandr/Desktop/VoidconOutput.txt";
-
-
-
-
+        
 
         public static Results DoLogic(enum_Profiles inputProfile, double [] _liveLoad)
         {
 
             liveLoad = _liveLoad;
-            //try
-            //{
-            //    ostrm = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-            //    writer = new StreamWriter(ostrm);
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Cannot open VoidconOutput.txt for writing");
-            //    Console.WriteLine(e.Message);                
-            //}
 
             var ReturnResults = new Results();
             ReturnResults.profileLengths = new List<double>();
@@ -98,13 +81,10 @@ namespace ClassLibrary1.Calculations
 
                 }
 
-                //Console.SetOut(writer);
+
                 doCalculations(profile, ReturnResults.profileLengths, slabThickness, ref ReturnResults);
 
             }
-            //Console.SetOut(oldOut);
-            //writer.Close();
-            //ostrm.Close();
 
             return ReturnResults;
         }
@@ -113,24 +93,7 @@ namespace ClassLibrary1.Calculations
         {
             results.values = new List<ResultsList>();
 
-            //Console.Write(" & & & & ");
 
-
-            //foreach (Double s in spanList)
-            //{
-            //    if (spanList.IndexOf(s) == spanList.Count() - 1)
-            //    {
-            //        Console.Write(s.ToString("F2") + new string(Space, 1));
-
-            //    }
-            //    else
-            //    {
-            //        Console.Write(s.ToString("F2") + new string(Space, 1));
-
-            //    }
-            //};
-            //Console.WriteLine("");
-            //Console.WriteLine("");
 
 
             foreach (Double t in slabThickness)
