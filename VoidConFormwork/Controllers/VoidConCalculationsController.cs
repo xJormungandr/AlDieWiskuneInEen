@@ -46,7 +46,7 @@ namespace VoidConFormwork.Controllers
                 case "VP50":
                     profile = enum_Profiles.vp50;
                     break;
-                case "VP150":
+                case "VP115":
                     profile = enum_Profiles.vp115;
                     break;
                 case "VP200":
