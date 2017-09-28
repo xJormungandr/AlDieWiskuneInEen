@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoidConFormwork", "VoidConFormwork\VoidConFormwork.csproj", "{6409B9EF-CE0D-4132-83E9-DAF6DAED03E6}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A70A8836-4039-4BE9-9B40-CD269096F368}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppConsole", "ConsoleApp1\WebAppConsole.csproj", "{DA44DD3D-4DC1-43EC-B4FB-8F9C8BEE7614}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{06103335-6F1D-4533-9741-86123A887266}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{DA44DD3D-4DC1-43EC-B4FB-8F9C8BEE7614}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA44DD3D-4DC1-43EC-B4FB-8F9C8BEE7614}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA44DD3D-4DC1-43EC-B4FB-8F9C8BEE7614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06103335-6F1D-4533-9741-86123A887266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06103335-6F1D-4533-9741-86123A887266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06103335-6F1D-4533-9741-86123A887266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06103335-6F1D-4533-9741-86123A887266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,5 +49,6 @@ Global
 		{6409B9EF-CE0D-4132-83E9-DAF6DAED03E6} = {1B380A93-721A-47F7-955A-CEE2D721D288}
 		{A4D2E207-DA9A-4C27-A0AD-D7557DDDCBB6} = {A1CEA7A7-2A21-4857-8C4B-9A28F5967BF3}
 		{DA44DD3D-4DC1-43EC-B4FB-8F9C8BEE7614} = {A70A8836-4039-4BE9-9B40-CD269096F368}
+		{06103335-6F1D-4533-9741-86123A887266} = {B7C27DB2-35E2-4FFB-B402-0A9D4B649B9A}
 	EndGlobalSection
 EndGlobal
