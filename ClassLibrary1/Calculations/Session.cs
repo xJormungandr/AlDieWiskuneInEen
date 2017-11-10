@@ -149,12 +149,13 @@ namespace ClassLibrary1.Calculations
 
                         double extraRebarULS;
                         double extraRebarFLS;
+                        string extraRebarFLS_Dash = "-";
 
                         if (temp.c.printRebarRequirement() == "-")
                         {
-                            extraRebarULS = 0.0;
+                            extraRebarULS = 0.0;                            
                             extraRebarFLS = Convert.ToDouble(temp.c.FireRatingCalculator());
-
+                            
                         }
                         else
                         {
@@ -162,15 +163,15 @@ namespace ClassLibrary1.Calculations
                             extraRebarULS = Convert.ToDouble(temp.c.printRebarRequirement());
                             extraRebarFLS = Convert.ToDouble(temp.c.FireRatingCalculator());
                         }
-
+                                    
                         
-                        if(extraRebarFLS > extraRebarULS)
+                        if(extraRebarFLS > extraRebarULS & temp.c.printRebarRequirement() != "-")
                         {
                             _ResultList.fireRating.Add(extraRebarFLS.ToString("f0"));
                         }
                         else
                         {
-                            _ResultList.fireRating.Add(extraRebarFLS.ToString("f0"));
+                            _ResultList.fireRating.Add(extraRebarFLS_Dash);
                         }
 
                     }
@@ -178,7 +179,7 @@ namespace ClassLibrary1.Calculations
                     results.values.Add(_ResultList);
                     
                     String temp2 = dataLine[(dataLine.Count() - 1)];
-                    String newtemp = temp2.Replace("&", "\\\\"); //Geen Fokken Idee Wat Hierdie Doen Nie
+                    String newtemp = temp2.Replace("&", "\\\\"); 
                     dataLine.Add(newtemp);
                     foreach (var line in dataLine)
                     {
