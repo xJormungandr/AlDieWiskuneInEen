@@ -20,8 +20,46 @@ namespace DAL.Classes
             //Crypto
 
             //db add
+            using (var metadata = new db_VoidConFormworkEntities())
+            {
 
-            return 0;
+                var User = new db_Users
+                {
+                    Email = info.Email,
+                    Password = info.Password,
+                    Username = info.Username
+                };
+
+                metadata.db_Users.Add(User);
+
+                metadata.SaveChanges();
+
+                return User.userID;
+            }
+        }
+
+        public static bool Login(string Username, string Password)
+        {
+            using (var metadata = new db_VoidConFormworkEntities())
+            {
+                //get user using LINQ
+                var User =  metadata.db_Users.Where(r => r.Username == Username && r.isActive).FirstOrDefault();
+
+                if(User == null)
+                {
+                    //fail
+                }
+
+                //Crypto
+
+                var isAuth = true;
+
+                if (isAuth)
+                    return true;
+                else
+                    return false;
+
+            }
         }
     }
 }
