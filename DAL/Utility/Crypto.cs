@@ -8,10 +8,11 @@ namespace DAL.Utility
 {
     public class Crypto
     {
-        public static string Encrypt(string Password)
+        public static string Encrypt(string password)
         {
-            //Logic vir encr
-            return Password;
+            //Logic vir encryption           
+            return Convert.ToBase64String(System.Security.Cryptography.SHA256.Create()
+                .ComputeHash(Encoding.UTF8.GetBytes(password)));
         }
     }
 }

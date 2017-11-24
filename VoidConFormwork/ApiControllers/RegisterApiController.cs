@@ -23,7 +23,10 @@ namespace VoidConFormwork.ApiControllers
             {
                 Email = info.Email,
                 Password = info.Password,
-                Username = info.Username
+                FirstName = info.FirstName,
+                LastName = info.LastName,
+                ConfirmPassword = info.ConfirmPassword  
+
             });
 
             return new { isSucces = true, id= id };

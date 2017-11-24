@@ -11,31 +11,43 @@ function Login() {
 function Register() {
     $(".error-input").removeClass("error-input");
 
-    var UsernameO = $("#txtRegUsername");
+    var FirstNameO = $("#txtRegFirstName")
+    var LastNameO = $("#txtRegLastName")    
     var EmailO = $("#txtRegEmail");
     var PasswordO = $("#txtRegPassword");
+    var ConfirmPasswordO = $("#txtRegConfirmPassword")
 
 
     //Get data
-    var Username = UsernameO.val();
+
+    var FirstName = FirstNameO.val();
+    var LastName = LastNameO.val();
     var Email = EmailO.val();
     var Password = PasswordO.val();
+    var ConfirmPassword = ConfirmPasswordO.val();
 
     var isValid = true;
 
     //Check validation
-    if (Username == "") {
-        $(UsernameO).addClass("error-input");
+    if (FirstName == "") {
+        $(FirstNameO).addClass("error-input");
         isValid = false;
     }
-
+    if (LastName == "") {
+        $(LastNameO).addClass("error-input");
+        isValid = false;
+    }
     if (Email == "" || !isValidEmailAddress(Email)) {
         $(EmailO).addClass("error-input");
         isValid = false;
     }
-
     if (Password == "") {
         $(PasswordO).addClass("error-input");
+        isValid = false;
+    }
+
+    if (ConfirmPassword != Password) {
+        $(ConfirmPasswordO).addClass("error-input");
         isValid = false;
     }
 
@@ -44,9 +56,12 @@ function Register() {
 
     //JSON
     var Info = {
-        Username: Username,
+
+        FirstName: FirstName,
+        LastName: LastName,        
         Email: Email,
-        Password: Password
+        Password: Password,
+        ConfirmPassword: ConfirmPassword
     };
 
     //AJAX

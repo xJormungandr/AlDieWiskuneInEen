@@ -8,16 +8,22 @@ namespace DAL.Classes
 {
     public class bl_Register
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
-        public string Username { get; set; }
         public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
 
         public static long Register(bl_Register info)
         {
 
             //Validation
 
+
+
             //Crypto
+
+
 
             //db add
             using (var metadata = new db_VoidConFormworkEntities())
@@ -27,7 +33,9 @@ namespace DAL.Classes
                 {
                     Email = info.Email,
                     Password = info.Password,
-                    Username = info.Username
+                    //FirstName = info.FirstName,
+                    //LastName = info.LastName
+                    
                 };
 
                 metadata.db_Users.Add(User);
