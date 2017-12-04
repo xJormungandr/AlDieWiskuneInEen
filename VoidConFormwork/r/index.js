@@ -54,6 +54,8 @@ function Register() {
     if (!isValid)
         return;
 
+    
+
     //JSON
     var Info = {
 
@@ -68,4 +70,22 @@ function Register() {
     $.post("/api/RegisterApi", Info).done(function (data) {
         alert("Data Loaded: " + data);
     });
+}
+
+
+
+function CheckEmail() {
+    
+   // var isValid = true;
+    
+
+    $.ajax({
+        url: "http://localhost:51401/Validation/EmailExist",
+        method: 'POST',
+        data: { Email: $("#txtRegEmail").val() },
+        success: function (data) { $("#txtRegConfirmPassword").addClass("error-input")},
+        error: function () { $("#txtRegConfirmPassword").addClass("error-input") }
+    });
+
+    
 }

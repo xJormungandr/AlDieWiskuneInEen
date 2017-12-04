@@ -15,9 +15,11 @@ namespace DAL
     public partial class db_Users
     {
         public long userID { get; set; }
-        public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
         public bool isActive { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string ActivationCode { get; set; }
     }
 }

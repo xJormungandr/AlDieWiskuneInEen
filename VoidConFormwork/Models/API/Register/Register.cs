@@ -19,6 +19,8 @@ namespace VoidConFormwork.Models.API.Register
         public string Password { get; set; }
         [Required]
         public string ConfirmPassword { get; set; }
+        public bool IsActive { get; set; }        
 
     }
+    
 }

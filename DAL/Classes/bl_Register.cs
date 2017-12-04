@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using DAL.Utility;
 
 namespace DAL.Classes
 {
@@ -13,16 +10,32 @@ namespace DAL.Classes
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public bool IsActive { get; set; }        
 
         public static long Register(bl_Register info)
         {
-
             //Validation
+            var Exists = EmailExists(info.Email);
 
+            if (Exists)
+            {
+                
+            }
 
+            if (info.FirstName == "" || info.LastName == "" || info.Email == "")
+            {
+                throw new System.Exception("Empty Fields Are Not Allowed");
+            }
 
             //Crypto
+            info.Password = Crypto.Encrypt(info.Password);
+            info.ConfirmPassword = Crypto.Encrypt(info.ConfirmPassword);
+            info.IsActive = false;
 
+            if (info.Password != info.ConfirmPassword)
+            {
+                throw new System.Exception("Passwords Do Not Match");
+            }
 
 
             //db add
@@ -33,8 +46,9 @@ namespace DAL.Classes
                 {
                     Email = info.Email,
                     Password = info.Password,
-                    //FirstName = info.FirstName,
-                    //LastName = info.LastName
+                    FirstName = info.FirstName,
+                    LastName = info.LastName,
+                    isActive = info.IsActive
                     
                 };
 
@@ -51,7 +65,7 @@ namespace DAL.Classes
             using (var metadata = new db_VoidConFormworkEntities())
             {
                 //get user using LINQ
-                var User =  metadata.db_Users.Where(r => r.Username == Username && r.isActive).FirstOrDefault();
+                var User =  metadata.db_Users.Where(r => r.Email == Username).FirstOrDefault();
 
                 if(User == null)
                 {
@@ -69,5 +83,19 @@ namespace DAL.Classes
 
             }
         }
+
+        public static bool EmailExists(string Email)
+        {
+            using(db_VoidConFormworkEntities emailCheck = new db_VoidConFormworkEntities())
+            {
+                var check = emailCheck.db_Users.Where(id => id.Email == Email).FirstOrDefault();
+                return check != null;
+            }
+        }
+
+
+        
     }
+    
 }
+

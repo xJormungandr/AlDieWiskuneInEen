@@ -1,11 +1,9 @@
-﻿using DAL.Classes;
-using System;
-using System.Collections.Generic;
+﻿using DAL;
+using DAL.Classes;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using VoidConFormwork.Models.API.Register;
+
 
 namespace VoidConFormwork.ApiControllers
 {
@@ -30,6 +28,9 @@ namespace VoidConFormwork.ApiControllers
             });
 
             return new { isSucces = true, id= id };
+            
         }
+        
+
     }
 }
